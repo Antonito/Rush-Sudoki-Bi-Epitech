@@ -5,14 +5,19 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Fri Feb 26 20:31:56 2016 Antoine Baché
+## Last update Fri Feb 26 22:44:03 2016 Antoine Baché
 ##
 
 DEBUG=			yes
 
 SRC_PREFIX=		src/
 
-SRC_FILES=		main.c
+SRC_FILES=		main.c		\
+			solve.c		\
+			free.c		\
+			parse.c		\
+			show.c		\
+			errors.c
 
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))
 
