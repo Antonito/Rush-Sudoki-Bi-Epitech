@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:32:13 2016 Antoine Baché
-** Last update Fri Feb 26 23:50:45 2016 Antoine Baché
+** Last update Fri Feb 26 23:59:11 2016 Antoine Baché
 */
 
 #include <stdlib.h>
@@ -24,7 +24,7 @@ int	sudoki(void)
   while (++i < 9)
     if (!(grid[i] = malloc(sizeof(int) * 9)))
       return (errorMalloc());
-  if (readGrid(grid) || solve(grid))
+  if (readGrid(grid))
     return (1);
   free_grid(grid);
   return (0);

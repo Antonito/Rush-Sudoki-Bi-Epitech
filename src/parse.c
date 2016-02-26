@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 23:07:33 2016 Antoine Baché
-** Last update Fri Feb 26 23:35:06 2016 Antoine Baché
+** Last update Fri Feb 26 23:59:57 2016 Antoine Baché
 */
 
 #include <unistd.h>
@@ -75,8 +75,8 @@ int	readGrid(int **grid)
     {
       if ((check_read = readOneGrid(grid, &check)) == 1)
 	return (1);
-      if (check_read == 2)
-	showGrid(grid);
+      if (check_read == 2 && solve(grid) && showGrid(grid))
+	return (1);
     }
   return (0);
 }
