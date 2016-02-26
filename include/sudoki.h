@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:33:02 2016 Antoine Baché
-** Last update Sat Feb 27 00:00:11 2016 Antoine Baché
+** Last update Sat Feb 27 00:31:47 2016 Antoine Baché
 */
 
 #ifndef	SUDOKI_H_
@@ -13,6 +13,9 @@
 
 # define	SUDOKU_LINE	9
 
+# include	<stdbool.h>
+
+int		showGridError(void);
 int		showGrid(int **);
 void		free_grid(int **);
 
@@ -24,7 +27,7 @@ int		is_solved(int **);
 
 int		fillGrid(char [], int *);
 int		checkGrid(char [], int);
-int		readOneGrid(int **, int *);
+int		readOneGrid(int **, int *, bool);
 int		readGrid(int **);
 
 /*

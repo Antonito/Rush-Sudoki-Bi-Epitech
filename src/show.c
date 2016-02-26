@@ -5,10 +5,22 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 22:43:29 2016 Antoine Baché
-** Last update Sat Feb 27 00:01:14 2016 Antoine Baché
+** Last update Sat Feb 27 00:31:26 2016 Antoine Baché
 */
 
 #include <stdio.h>
+
+int	showGridError(void)
+{
+  if (printf("|------------------|\n| X X X X X X X X X|\n") < 0 ||
+      printf("|X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
+      printf("| X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
+      printf("| X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
+      printf("| X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
+      printf("|------------------|\n") < 0)
+    return (1);
+  return (0);
+}
 
 int	showGrid(int **grid)
 {

@@ -5,12 +5,13 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 23:07:33 2016 Antoine Baché
-** Last update Fri Feb 26 23:59:57 2016 Antoine Baché
+** Last update Sat Feb 27 00:33:41 2016 Antoine Baché
 */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "sudoki.h"
 
 int	fillGrid(char buff[], int *grid)
@@ -20,7 +21,7 @@ int	fillGrid(char buff[], int *grid)
 
   memset(grid, 0, sizeof(int) * 9);
   i = 0;
-  j = 0;
+  j = -1;
   while (i < 20)
     {
       if (j < 9 && !(i & 1))
@@ -41,7 +42,7 @@ int	checkGrid(char buff[], int i)
   return (0);
 }
 
-int	readOneGrid(int **grid, int *check)
+int	readOneGrid(int **grid, int *check, bool start)
 {
   char	buff[22];
   int	loop;
@@ -61,22 +62,30 @@ int	readOneGrid(int **grid, int *check)
       ++loop;
     }
   if (loop == 11)
-    return (2);
+    {
+      if (!start && printf("####################\n") < 0)
+	return (1);
+      return (2);
+    }
   return (0);
 }
 
 int	readGrid(int **grid)
 {
   int	check;
+  bool	start;
   int	check_read;
 
-  check = 1;
+  check = -1;
+  start = true;
   while (check)
     {
-      if ((check_read = readOneGrid(grid, &check)) == 1)
+      if ((check_read = readOneGrid(grid, &check, start)) == 1)
 	return (1);
       if (check_read == 2 && solve(grid) && showGrid(grid))
 	return (1);
+      if (start)
+	start = false;
     }
   return (0);
 }
