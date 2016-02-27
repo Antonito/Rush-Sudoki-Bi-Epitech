@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sat Feb 27 02:03:57 2016 Antoine Baché
+## Last update Sat Feb 27 14:39:47 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -14,9 +14,30 @@ SRC_PREFIX=		src/generator/
 
 SRC_FILES=		main.c
 
+SRC_CLIENT_PREFIX=	src/client/
+
+SRC_CLIENT_FILES=	main.c			\
+			errors.c		\
+			free.c			\
+			parse.c			\
+			show.c			\
+			send_serv.c
+
+NETWORK_PREFIX=		src/network/
+
+NETWORK_FILES=		socket.c
+
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))
 
+SRC_CLIENT=		$(addprefix $(SRC_CLIENT_PREFIX),$(SRC_CLIENT_FILES))
+
+NETWORK=		$(addprefix $(NETWORK_PREFIX),$(NETWORK_FILES))
+
+SRC_CLIENT+=		$(NETWORK)
+
 NAME=			generator
+
+NAME_CLIENT=		client
 
 HEAD=			-Iinclude
 
@@ -32,6 +53,15 @@ RM=			rm -f
 
 OBJ=			$(SRC:.c=.o)
 
+OBJ_CLIENT=		$(SRC_CLIENT:.c=.o)
+
+$(NAME_CLIENT):	$(NAME) $(OBJ_CLIENT)
+	@echo -n "[ "
+	@echo -n "OK"
+	@echo -n " ] "
+	@echo "Compiled client"
+	@$(CC) $(OBJ_CLIENT) -o $(NAME_CLIENT)
+
 $(NAME):	$(OBJ)
 	@echo -n "[ "
 	@echo -n "OK"
@@ -46,7 +76,7 @@ $(NAME):	$(OBJ)
 	@echo "Compiling" $<
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
-all:	$(NAME) $(NAME_SERVER)
+all:	$(NAME) $(NAME_CLIENT)
 
 clean:
 	@echo -n "[ "
@@ -54,6 +84,7 @@ clean:
 	@echo -n " ] "
 	@echo "Removing OBJ files ..."
 	@$(RM) $(OBJ)
+	@$(RM) $(OBJ_CLIENT)
 
 fclean:	clean
 	@echo -n "[ "
@@ -61,6 +92,7 @@ fclean:	clean
 	@echo -n " ] "
 	@echo "Deleting" $(NAME) "..."
 	@$(RM) $(NAME)
+	@$(RM) $(NAME_CLIENT)
 
 re:	fclean all
 
