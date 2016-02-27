@@ -5,14 +5,15 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sat Feb 27 01:06:19 2016 Antoine Baché
+## Last update Sat Feb 27 21:56:09 2016 Ludovic Petrenko
 ##
 
 DEBUG=			yes
 
 SRC_PREFIX=		src/
 
-SRC_FILES=		errors.c	\
+SRC_FILES=		backtrack.c	\
+			errors.c	\
 			free.c		\
 			is_solved.c	\
 			main.c		\

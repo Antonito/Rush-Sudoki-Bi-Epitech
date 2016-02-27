@@ -5,109 +5,101 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 21:23:06 2016 Ludovic Petrenko
-** Last update Sat Feb 27 01:15:51 2016 Ludovic Petrenko
+** Last update Sat Feb 27 06:03:32 2016 Ludovic Petrenko
 */
 
 #include "sudoki.h"
 
-#include <stdio.h>
-int	check_line(int **su, int ***bin)
+int	sum_line(int ***bin, int i, int k)
 {
-  int	i;
-  int	j;
-  int	k;
-  int	sol;
+  int	t;
   int	sum;
-  int	change;
 
-  i = -1;
-  change = 0;
-  while (++i < 9 && (k = -1))
-    while (++k < 9 && (j = -1) && !(sum = 0))
-      {
-	while (++j < 9)
-	  if ((sum += bin[i][j][k]) == 1)
-	    sol = j;
-	if (sum == 1 && ++change)
-	  add_sol(su, bin, i, sol, k);
-      }
-  return (change);
+  t = 0;
+  sum = 0;
+  while (t < 9)
+    {
+      sum += bin[i][t][k];
+      ++t;
+    }
+  return (sum);
 }
 
-int	check_column(int **su, int ***bin)
+int	sum_column(int ***bin, int j, int k)
 {
-  int	i;
-  int	j;
-  int	k;
-  int	sol;
+  int	t;
   int	sum;
-  int	change;
 
-  j = -1;
-  change = 0;
-  while (++j < 9 && (k = -1))
-    while (++k < 9 && (i = -1) && !(sum = 0))
-      {
-	while (++i < 9)
-	  if ((sum += bin[i][j][k]) == 1)
-	    sol = i;
-	if (sum == 1 && ++change)
-	  add_sol(su, bin, sol, j, k);
-      }
-  return (change);
+  t = 0;
+  sum = 0;
+  while (t < 9)
+    {
+      sum += bin[t][j][k];
+      ++t;
+    }
+  return (sum);
 }
 
-int	check_untitled(int **su, int ***bin)
+int	sum_untitled(int ***bin, int i, int j)
 {
-  int	i;
-  int	j;
-  int	k;
-  int	sol;
+  int	t;
   int	sum;
-  int	change;
 
-  i = -1;
-  change = 0;
-  while (++i < 9 && (j = -1))
-    while (++j < 9 && (k = -1) && !(sum = 0))
-      {
-	while (++k < 9)
-	  if ((sum += bin[i][j][k]) == 1)
-	    sol = k;
-	if (sum == 1 && ++change)
-	  add_sol(su, bin, i, j, sol);
-      }
-  return (change);
+  t = 0;
+  sum = 0;
+  while (t < 9)
+    {
+      sum += bin[i][j][t];
+      ++t;
+    }
+  return (sum);
 }
 
-int	check_square(int **su, int ***bin)
+int	sum_square(int ***bin, int i, int j, int k)
 {
-  int	k;
   int	u;
   int	v;
-  int	sol[3];
   int	sum;
-  int	change;
 
-  u = -1;
-  change = 0;
-  while (++u < 3 && (v = -1))
-    while (++v < 3 && (k = -1) && !(sum = 0))
-      while (++k < 9)
-	if ((sum = sum_square(bin, 3 * u, 3 * v, k, sol)) == 1 && ++change)
-	  add_sol(su, bin, sol[0], sol[1], sol[2]);
-  return (change);
+  u = 0;
+  i = (i / 3) * 3;
+  j = (j / 3) * 3;
+  sum = 0;
+  while (u < 3)
+    {
+      v = 0;
+      while (v < 3)
+	{
+	  sum += bin[i + u][j + v][k];
+	  ++v;
+	}
+      ++u;
+    }
+  return (sum);
 }
 
 int	pass(int **su, int ***bin)
 {
   int	change;
+  int	i;
+  int	j;
+  int	k;
+  int	sum[4];  
 
   change = 0;
-  change += check_line(su, bin);
-  change += check_column(su, bin);
-  change += check_untitled(su, bin);
-  change += check_square(su, bin);
+  k = -1;
+  while (++k < 9 && (j = -1))
+    while (++j < 9 && (i = -1))
+      while (++i < 9)
+	if (!su[i][j] && bin[i][j][k])
+	  {
+	    sum[0] = sum_line(bin, i, k);
+	    sum[1] = sum_column(bin, j, k);
+	    sum[2] = sum_untitled(bin, i, j);
+	    sum[3] = sum_square(bin, i, j, k);
+	    if ((sum[0] == 1 || sum[1] == 1 || sum[2] == 1 || sum[3] == 1) && ++change)
+	      add_sol(su, bin, i, j, k);
+	  }
   if (change)
     return (1);
   return (0);

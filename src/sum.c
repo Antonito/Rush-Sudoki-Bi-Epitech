@@ -5,43 +5,37 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 22:26:48 2016 Ludovic Petrenko
-** Last update Sat Feb 27 01:11:23 2016 Ludovic Petrenko
+** Last update Sun Feb 28 00:05:05 2016 Ludovic Petrenko
 */
 
 #include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "sudoki.h"
 
-int		sum_square(int ***bin, int u, int v, ...)
+void	clear_sol(int ***bin, int i, int j, int k)
 {
-  int		i;
-  int		j;
-  int		k;
-  int		*sol;
-  int		sum;
-  va_list	ap;
+  int	t;
+  int	u;
+  int	v;
 
-  va_start(ap, v);
-  k = va_arg(ap, int);
-  sol = va_arg(ap, int*);
-  va_end(ap);
-  sum = 0;
-  j = -1;
-  while (++j < 3 && (i = -1))
-    while (++i < 3)
-      {
-	if ((sum += bin[i + u][j + v][k]) == 1)
-	  {
-	    sol[0] = i + u;
-	    sol[1] = j + v;
-	    sol[2] = k;
-	  }
-      }
-  return (sum);
+  t = -1;
+  /* printf("(%d, %d) %d\n", i + 1, j + 1, k + 1); */
+  while (++t < 9)
+    {
+      bin[i][j][t] = 0;
+      bin[i][t][k] = 0;
+      bin[t][j][k] = 0;
+    }
+  v = -1;
+  while (++v < 3 && (u = -1))
+    while (++u < 3)
+      bin[(i / 3) * 3 + u][(j / 3) * 3 + v][k] = 0;
+  bin[i][j][k] = 1;
 }
 
 void		add_sol(int **su, int ***bin, int i, ...)
 {
-  int		t;
   int		j;
   int		k;
   va_list	ap;
@@ -50,14 +44,6 @@ void		add_sol(int **su, int ***bin, int i, ...)
   j = va_arg(ap, int);
   k = va_arg(ap, int);
   va_end(ap);
-  t = 0;
-  printf("(%d, %d) %d\n", i, j, k + 1);
-  while (t < 9)
-    {
-      bin[i][j][t] = 0;
-      bin[i][t][k] = 0;
-      bin[t][j][k] = 0;
-      t++;
-    }
+  clear_sol(bin, i, j, k);
   su[i][j] = k + 1;
 }

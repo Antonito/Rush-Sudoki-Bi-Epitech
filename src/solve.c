@@ -5,7 +5,7 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 21:06:30 2016 Ludovic Petrenko
-** Last update Sat Feb 27 01:11:35 2016 Ludovic Petrenko
+** Last update Sun Feb 28 00:46:38 2016 Ludovic Petrenko
 */
 
 #include <stdbool.h>
@@ -50,23 +50,38 @@ void	prepare_tab(int **su, int ***bin)
 	add_sol(su, bin, i, j, su[i][j] - 1);
 }
 
+void	free_tab(int ***tab)
+{
+  int	i;
+
+  i = 0;
+  while (i < 9)
+    free_grid(tab[i++]);
+  free(tab);
+}
+
 int	solve(int **su)
 {
   int	***bin;
+  int	**res;
 
   if ((bin = set_tab(1)) == NULL)
     return (1);
-  showGrid(su);
   prepare_tab(su, bin);
-  showGrid(su);
   while (!is_solved(su))
     {
-      showGrid(su);
       if (!pass(su, bin) && !is_solved(su))
-	{
-	  printf("This sudoku is not solvable\n");
-	  return (1);
-	}
+  	{
+	  if ((res = backtrack(su, 0)) == NULL)
+	    {
+	      if (showGridError())
+		return (1);
+	      return (free_tab(bin), 0);
+	    }
+	  else if (showGrid(res))
+	    return (1);
+	  return (free_tab(bin), free_grid(res), 0);
+  	}
     }
-  return (0);
+  return (showGrid(su));
 }

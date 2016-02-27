@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:33:02 2016 Antoine Baché
-** Last update Sat Feb 27 01:02:34 2016 Antoine Baché
+** Last update Sun Feb 28 00:35:12 2016 Ludovic Petrenko
 */
 
 #ifndef	SUDOKI_H_
@@ -21,6 +21,12 @@ void		free_grid(int **);
 int		is_solved(int **);
 
 /*
+** backtrack.c
+*/
+
+int		**backtrack(int **, int);
+
+/*
 ** parse.c
 */
 int		fillGrid(char [], int *);
@@ -31,10 +37,6 @@ int		readGrid(int **);
 /*
 ** pass.c
 */
-int		check_line(int **, int ***);
-int		check_column(int **, int ***);
-int		check_untitled(int **, int ***);
-int		check_square(int **, int ***);
 int		pass(int **, int ***);
 
 /*
@@ -47,7 +49,6 @@ int		solve(int **);
 /*
 ** sum.c
 */
-int		sum_square(int ***, int, int, ...);
 void		add_sol(int **, int ***, int, ...);
 
 #endif /* !SUDOKI_H_ */
