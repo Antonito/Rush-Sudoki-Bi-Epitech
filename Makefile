@@ -4,8 +4,7 @@
 ## Made by Antoine Baché
 ## Login   <bache_a@epitech.net>
 ##
-## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sat Feb 27 21:56:09 2016 Ludovic Petrenko
+## Last update Sun Feb 28 00:54:46 2016 Ludovic Petrenko
 ##
 
 DEBUG=			yes
@@ -45,7 +44,7 @@ $(NAME):	$(OBJ)
 	@echo -n "[ "
 	@echo -n "OK"
 	@echo -n " ] "
-	@echo "Compiled client"
+	@echo "Compiled sudoki"
 	@$(CC) $(OBJ) -o $(NAME)
 
 %.o:%.c
