@@ -5,7 +5,7 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 22:26:48 2016 Ludovic Petrenko
-** Last update Fri Feb 26 23:54:40 2016 Ludovic Petrenko
+** Last update Sat Feb 27 01:11:23 2016 Ludovic Petrenko
 */
 
 #include <stdarg.h>
@@ -51,11 +51,13 @@ void		add_sol(int **su, int ***bin, int i, ...)
   k = va_arg(ap, int);
   va_end(ap);
   t = 0;
+  printf("(%d, %d) %d\n", i, j, k + 1);
   while (t < 9)
     {
       bin[i][j][t] = 0;
       bin[i][t][k] = 0;
       bin[t][j][k] = 0;
+      t++;
     }
-  su[i][j] = k + 1;	  
+  su[i][j] = k + 1;
 }

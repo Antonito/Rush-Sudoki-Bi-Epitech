@@ -5,11 +5,12 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 21:23:06 2016 Ludovic Petrenko
-** Last update Fri Feb 26 23:54:24 2016 Ludovic Petrenko
+** Last update Sat Feb 27 01:15:51 2016 Ludovic Petrenko
 */
 
 #include "sudoki.h"
 
+#include <stdio.h>
 int	check_line(int **su, int ***bin)
 {
   int	i;
@@ -51,7 +52,7 @@ int	check_column(int **su, int ***bin)
 	  if ((sum += bin[i][j][k]) == 1)
 	    sol = i;
 	if (sum == 1 && ++change)
-	  add_sol(su, bin, sol, i, k);
+	  add_sol(su, bin, sol, j, k);
       }
   return (change);
 }
@@ -70,10 +71,9 @@ int	check_untitled(int **su, int ***bin)
   while (++i < 9 && (j = -1))
     while (++j < 9 && (k = -1) && !(sum = 0))
       {
-	if (su[i][j] == 0)
-	  while (++k < 9)
-	    if ((sum += bin[i][j][k]) == 1)
-	      sol = k;
+	while (++k < 9)
+	  if ((sum += bin[i][j][k]) == 1)
+	    sol = k;
 	if (sum == 1 && ++change)
 	  add_sol(su, bin, i, j, sol);
       }
