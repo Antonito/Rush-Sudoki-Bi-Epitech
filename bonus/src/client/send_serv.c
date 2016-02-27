@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 14:15:51 2016 Antoine Baché
-** Last update Sat Feb 27 16:18:19 2016 Antoine Baché
+** Last update Sat Feb 27 21:07:30 2016 Antoine Baché
 */
 
 #include <unistd.h>
@@ -40,7 +40,7 @@ int	send_server(int **grid, int fd)
 {
   int	check;
 
-  if (send_grid(grid, fd) || (check = receive_grid(grid, fd, false)) == 1)
+  if (send_grid(grid, fd) || (check = receive_grid(grid, fd, true)) == 1)
     {
       free_grid(grid);
       return (1);

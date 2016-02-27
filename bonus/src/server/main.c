@@ -5,11 +5,9 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:07:08 2016 Antoine Baché
-** Last update Sat Feb 27 20:40:39 2016 Antoine Baché
+** Last update Sat Feb 27 20:59:21 2016 Antoine Baché
 */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include <string.h>
 #include "server.h"
 
@@ -56,15 +54,13 @@ int	start_serv(char *port)
   while (42 && (fd = accept_client(serv_fd)) >= 0)
     while (42 && (tmp = socket_read(fd)))
       {
-	if (strncmp(tmp, "Hello", 5) != 0)
+	if (strncmp(tmp, "Hello", 5) != 0 &&
+	    write(2, "[INFOS] Client disconnected\n", 28) > -2)
 	  {
 	    if (socket_send(fd, "OK") || close(fd) < 0)
 	      return (1);
-	    else
-	      {
-		free(tmp);
-		break;
-	    }
+	    else if (!free_tmp(tmp))
+	      break;
 	  }
 	if (server_loop(fd, grid, tmp))
 	  return (1);

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:28:13 2016 Antoine Baché
-** Last update Sat Feb 27 16:55:28 2016 Antoine Baché
+** Last update Sat Feb 27 21:14:25 2016 Antoine Baché
 */
 
 #include <stdlib.h>
@@ -36,9 +36,10 @@ int	receive_grid(int **grid, int fd, bool solved)
 {
   int	i;
   int	j;
-  char	*tmp;
+  bool	check;
 
   i = 0;
+  check = false;
   while (i < 9 && !(j = 0))
     {
       while (j < 9)
@@ -48,11 +49,13 @@ int	receive_grid(int **grid, int fd, bool solved)
 	    {
 	      return (1);
 	    }
-	  if (solved == true && grid[i][j] == 0)
-	    return (2);
+	  if (solved == true && check == false && grid[i][j] == 0)
+	    check = true;
 	  ++j;
 	}
       ++i;
     }
+  if (check)
+    return (2);
   return (0);
 }
