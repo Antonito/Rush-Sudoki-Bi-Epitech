@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 23:07:33 2016 Antoine Baché
-** Last update Sat Feb 27 14:54:23 2016 Antoine Baché
+** Last update Sat Feb 27 20:05:55 2016 Antoine Baché
 */
 
 #include <unistd.h>
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include "errors.h"
 #include "client.h"
+#include "network.h"
 
 int	fillGrid(char buff[], int *grid)
 {
@@ -79,22 +80,30 @@ int	readOneGrid(int **grid, int *check, bool start)
   return (0);
 }
 
-int	readGrid(int **grid, char *ip, char *port)
+int	readGrid(int **grid, int fd)
 {
   int	check;
   bool	start;
   int	check_read;
+  char	*tmp;
 
   check = -1;
   start = true;
   while (check)
     {
-      if ((check_read = readOneGrid(grid, &check, start)) == 1)
+      if (socket_send(fd, "Hello") || !(tmp = socket_read(fd)) ||
+	  strncmp(tmp, "OK", 2) != 0 ||
+	  (check_read = readOneGrid(grid, &check, start)) == 1)
 	return (1);
-      if (check_read == 2 && (send_server(grid, ip, port) || showGrid(grid)))
+      free(tmp);
+      if (check_read == 2 && send_server(grid, fd))
 	return (1);
       if (start)
 	start = false;
     }
+  if (socket_send(fd, "ByeBye") ||
+      !(tmp = socket_read(fd)) || close(fd) < 0)
+    return (1);
+  free(tmp);
   return (0);
 }

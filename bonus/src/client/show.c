@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 22:43:29 2016 Antoine Baché
-** Last update Sat Feb 27 00:31:26 2016 Antoine Baché
+** Last update Sat Feb 27 15:37:48 2016 Antoine Baché
 */
 
 #include <stdio.h>
@@ -13,7 +13,7 @@
 int	showGridError(void)
 {
   if (printf("|------------------|\n| X X X X X X X X X|\n") < 0 ||
-      printf("|X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
+      printf("| X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
       printf("| X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
       printf("| X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||
       printf("| X X X X X X X X X|\n| X X X X X X X X X|\n") < 0 ||

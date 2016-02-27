@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:32:13 2016 Antoine Baché
-** Last update Sat Feb 27 15:00:34 2016 Antoine Baché
+** Last update Sat Feb 27 16:14:59 2016 Antoine Baché
 */
 
 #include <stdlib.h>
@@ -17,6 +17,7 @@ int	sudoki(char *ip, char *port)
 {
   int	**grid;
   int	i;
+  int	fd;
 
   if (!(grid = malloc(sizeof(int *) * 9)))
     return (errorMalloc());
@@ -24,7 +25,12 @@ int	sudoki(char *ip, char *port)
   while (++i < 9)
     if (!(grid[i] = malloc(sizeof(int) * 9)))
       return (errorMalloc());
-  if (readGrid(grid, ip, port))
+  if ((fd = start_connect(ip, port)) == -1)
+    {
+      free_grid(grid);
+      return (1);
+    }
+  if (readGrid(grid, fd))
     return (1);
   free_grid(grid);
   return (0);
@@ -37,7 +43,7 @@ int	main(int ac, char **av, char **env)
     return (1);
   if (ac != 3)
     {
-      write(2, "Usage: ./sudoki-bi ip port < file\n", 34);
+      write(2, "Usage: ./client ip port < file\n", 31);
       return (1);
     }
   if (sudoki(av[1], av[2]))

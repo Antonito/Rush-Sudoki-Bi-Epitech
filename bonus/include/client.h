@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:33:02 2016 Antoine Baché
-** Last update Sat Feb 27 14:19:33 2016 Antoine Baché
+** Last update Sat Feb 27 16:18:57 2016 Antoine Baché
 */
 
 #ifndef	CLIENT_H_
@@ -26,11 +26,12 @@ int		is_solved(int **);
 int		fillGrid(char [], int *);
 int		checkGrid(char [], int, int);
 int		readOneGrid(int **, int *, bool);
-int		readGrid(int **, char *, char *);
+int		readGrid(int **, int);
 
 /*
 ** send_serv.c
 */
-int		send_server(int **, char *, char *);
+int		start_connect(char *, char *);
+int		send_server(int **, int);
 
 #endif /* !CLIENT_H_ */
