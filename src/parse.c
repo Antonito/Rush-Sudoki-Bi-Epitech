@@ -5,13 +5,14 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 23:07:33 2016 Antoine Baché
-** Last update Sat Feb 27 00:33:41 2016 Antoine Baché
+** Last update Sat Feb 27 01:13:43 2016 Antoine Baché
 */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "errors.h"
 #include "sudoki.h"
 
 int	fillGrid(char buff[], int *grid)
@@ -35,10 +36,19 @@ int	fillGrid(char buff[], int *grid)
   return (0);
 }
 
-int	checkGrid(char buff[], int i)
+int	checkGrid(char buff[], int i, int loop)
 {
+  int	j;
+
+  if ((loop == 0 || loop == 10) &&
+      strcmp(buff, "|------------------|\n"))
+    return (errorMapError());
   if (i > 0 && i < 10 && (buff[0] != '|' || buff[19] != '|'))
-    return (1);
+    return (errorMapError());
+  j = 0;
+  while (loop != 0 && loop != 10 && ++j < 19)
+    if (buff[j] != ' ' && (buff[j] < '1' || buff[j] > '9'))
+      return (errorMapError());
   return (0);
 }
 
@@ -53,13 +63,12 @@ int	readOneGrid(int **grid, int *check, bool start)
   loop = 0;
   while (loop < 11 && (*check = read(0, buff, 21)) > 0)
     {
-      if (checkGrid(buff, i % 11))
+      if (checkGrid(buff, i, loop))
 	return (1);
       if (i < 9 && fillGrid(buff, grid[i]))
 	return (1);
-      if (loop > 0)
+      if (loop++ > 0)
 	++i;
-      ++loop;
     }
   if (loop == 11)
     {
@@ -82,7 +91,7 @@ int	readGrid(int **grid)
     {
       if ((check_read = readOneGrid(grid, &check, start)) == 1)
 	return (1);
-      if (check_read == 2 && solve(grid) && showGrid(grid))
+      if (check_read == 2 /* && solve(grid) */ && showGrid(grid))
 	return (1);
       if (start)
 	start = false;
