@@ -5,26 +5,18 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sat Feb 27 02:05:53 2016 Antoine Baché
+## Last update Sat Feb 27 02:03:57 2016 Antoine Baché
 ##
 
 DEBUG=			yes
 
-SRC_PREFIX=		src/
+SRC_PREFIX=		src/generator/
 
-SRC_FILES=		errors.c	\
-			free.c		\
-			is_solved.c	\
-			main.c		\
-			parse.c		\
-			pass.c		\
-			show.c		\
-			solve.c		\
-			sum.c
+SRC_FILES=		main.c
 
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))
 
-NAME=			bin/sudoki-bi
+NAME=			generator
 
 HEAD=			-Iinclude
 
@@ -44,7 +36,7 @@ $(NAME):	$(OBJ)
 	@echo -n "[ "
 	@echo -n "OK"
 	@echo -n " ] "
-	@echo "Compiled sudoki"
+	@echo "Compiled generator"
 	@$(CC) $(OBJ) -o $(NAME)
 
 %.o:%.c
