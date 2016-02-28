@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 23:07:33 2016 Antoine Baché
-** Last update Sat Feb 27 21:15:47 2016 Antoine Baché
+** Last update Sun Feb 28 01:21:51 2016 Antoine Baché
 */
 
 #include <unistd.h>
@@ -80,6 +80,16 @@ int	readOneGrid(int **grid, int *check, bool start)
   return (0);
 }
 
+int	disconnect_error(int fd)
+{
+  char	*tmp;
+  socket_send(fd, "ByeBye");
+  tmp = socket_read(fd);
+  close(fd);
+  free(tmp);
+  return (1);
+}
+
 int	readGrid(int **grid, int fd)
 {
   int	check;
@@ -94,7 +104,7 @@ int	readGrid(int **grid, int fd)
       if (socket_send(fd, "Hello") || !(tmp = socket_read(fd)) ||
 	  strncmp(tmp, "OK", 2) != 0 ||
 	  (check_read = readOneGrid(grid, &check, start)) == 1)
-	return (1);
+	return (disconnect_error(fd));
       free(tmp);
       if (check_read == 2 && send_server(grid, fd))
 	return (1);
