@@ -5,11 +5,12 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Sat Feb 27 06:47:24 2016 Ludovic Petrenko
-** Last update Sun Feb 28 21:56:38 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:35:05 2016 Ludovic Petrenko
 */
 
 #include <stdlib.h>
 #include "server.h"
+#include "errors.h"
 
 int	check_error(char *grid, int i, int j)
 {
@@ -19,13 +20,13 @@ int	check_error(char *grid, int i, int j)
   int	k;
 
   t = -1;
-  k = 9 * i + j;
+  k =  i * 9 + j;
   while (++t < 9 && grid[k])
     {
       x = i / 3 * 3 + t / 3;
       y = j / 3 * 3 + t % 3;
       if ((grid[k] == grid[k - j + t] && t != j) ||
-	  (grid[k] == grid[9 * t + j] && t != i) ||
+	  (grid[k] == grid[t * 9 + j] && t != i) ||
 	  (grid[k] == grid[x * 9 + y] && !(x == i && y == j)))
 	return (1);
     }
@@ -37,7 +38,7 @@ char	*cp_grid(char *grid)
   int	i;
   char	*res;
 
-  if ((res = malloc(81)) == NULL)
+  if ((res = my_malloc(81)) == NULL)
     return (NULL);
   i = 0;
   while (i < 81)

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:33:02 2016 Antoine Baché
-** Last update Sun Feb 28 20:19:52 2016 Ludovic Petrenko
+** Last update Sun Feb 28 21:22:37 2016 Antoine Baché
 */
 
 #ifndef	SUDOKI_H_

@@ -5,23 +5,28 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Fri Feb 26 21:06:30 2016 Ludovic Petrenko
-** Last update Sun Feb 28 22:04:07 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:34:10 2016 Ludovic Petrenko
 */
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "server.h"
+#include "errors.h"
 
 char	*set_tab(int value)
 {
   int	i;
   char	*tab;
 
-  if ((tab = malloc(729)) == NULL)
+  i = 0;
+  if ((tab = my_malloc(729)) == NULL)
     return (NULL);
-  while (++i < 729)
-    tab[i] = value;
+  while (i < 729)
+    {
+      tab[i] = value;
+      i++;
+    }
   return (tab);
 }
 
@@ -29,15 +34,15 @@ void	prepare_tab(char *su, char *bin)
 {
   int	i;
   int	j;
-  int	k;
+  int	t;
 
   j = -1;
   while (++j < 9 && (i = -1))
     while (++i < 9)
       {
-	k = 9 * i + j;
-	if (su[k])
-	  add_sol(su, bin, i, j, su[k] - 1);
+	t = 9 * i + j;
+	if (su[t])
+	  add_sol(su, bin, i, j, su[t] - 1);
       }
 }
 

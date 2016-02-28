@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sun Feb 28 22:53:24 2016 Ludovic Petrenko
+## Last update Sun Feb 28 23:35:25 2016 Ludovic Petrenko
 ##
 
 DEBUG=			yes
@@ -27,7 +27,6 @@ SRC_CLIENT_PREFIX=	src/client/
 
 SRC_CLIENT_FILES=	main.c			\
 			errors.c		\
-			free.c			\
 			parse.c			\
 			show.c			\
 			send_serv.c
@@ -40,7 +39,7 @@ SRC_SERV_FILES=		main.c			\
 			is_solved.c		\
 			pass.c			\
 			solve.c			\
-			free.c			\
+			errors.c		\
 			sum.c
 
 NETWORK_PREFIX=		src/network/

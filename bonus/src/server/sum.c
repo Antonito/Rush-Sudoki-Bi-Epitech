@@ -5,12 +5,11 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Fri Feb 26 22:26:48 2016 Ludovic Petrenko
-** Last update Sun Feb 28 21:58:33 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:34:20 2016 Ludovic Petrenko
 */
 
 #include <stdarg.h>
 #include <stdio.h>
-#include <unistd.h>
 #include "server.h"
 
 void	clear_sol(char *bin, int i, int j, int k)

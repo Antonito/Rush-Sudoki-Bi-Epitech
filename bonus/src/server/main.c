@@ -5,30 +5,20 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:07:08 2016 Antoine Baché
-** Last update Sun Feb 28 01:21:38 2016 Ludovic Petrenko
+** Last update Sun Feb 28 22:21:44 2016 Antoine Baché
 */
 
 #include <string.h>
 #include "server.h"
+#include "errors.h"
 
-void	receive_map(int fd, int **grid)
+void	receive_map(int fd, char *grid)
 {
   if (receive_grid(grid, fd, false) || solve(grid) || send_grid(grid, fd))
     return ;
 }
 
-int	prepare_grid(int **grid)
-{
-  int	i;
-
-  i = -1;
-  while (++i < 9)
-    if (!(grid[i] = malloc(sizeof(int) * 9)))
-      return (1);
-  return (0);
-}
-
-int	server_loop(int fd, int **grid, char *tmp)
+int	server_loop(int fd, char *grid, char *tmp)
 {
   free(tmp);
   if (socket_send(fd, "OK"))
@@ -43,14 +33,15 @@ int	start_serv(char *port)
   int	fd;
   int	serv_fd;
   char	*tmp;
-  int	**grid;
+  char	*grid;
 
   if ((fd = server(atoi(port), &serv_fd)) == -1 ||
-      !(grid = malloc(sizeof(int *) * 9)) || prepare_grid(grid))
+      (grid = malloc(81)) == NULL)
     return (1);
   while (42 && (fd = accept_client(serv_fd)) >= 0)
     while (42 && (tmp = socket_read(fd)))
       {
+	printf("Tmp = %s\n", tmp);
 	if (strncmp(tmp, "Hello", 5) != 0 &&
 	    write(2, "[INFOS] Client disconnected\n", 28) > -2)
 	  {

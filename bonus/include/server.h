@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:12:50 2016 Antoine Baché
-** Last update Sun Feb 28 22:47:34 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:36:08 2016 Ludovic Petrenko
 */
 
 #ifndef	SERVER_H_
@@ -23,33 +23,32 @@ int		server(int, int *);
 ** free
 */
 int		free_tmp(char *);
-void		free_grid(int **);
 
 /*
 ** is_solved.c
 */
-int		is_solved(int **);
+int		is_solved(char *);
 
 /*
 ** backtrack.c
 */
-int		**backtrack(int **, int);
+char		*backtrack(char *, int);
 
 /*
 ** pass.c
 */
-int		pass(int **, int ***);
+int		pass(char *, char *);
 
 /*
 ** solve.c
 */
-void		prepare_tab(int **, int ***);
-int		***set_tab(int);
-int		solve(int **);
+void		prepare_tab(char *, char *);
+char		*set_tab(int);
+int		solve(char *);
 
 /*
 ** sum.c
 */
-void		add_sol(int **, int ***, int, ...);
+void		add_sol(char *, char *, int, ...);
 
 #endif /* !SERVER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 14:15:51 2016 Antoine Baché
-** Last update Sat Feb 27 21:07:30 2016 Antoine Baché
+** Last update Sun Feb 28 22:04:25 2016 Antoine Baché
 */
 
 #include <unistd.h>
@@ -36,23 +36,23 @@ int			start_connect(char *ip, char *port)
   return (fd);
 }
 
-int	send_server(int **grid, int fd)
+int	send_server(char *grid, int fd)
 {
   int	check;
 
   if (send_grid(grid, fd) || (check = receive_grid(grid, fd, true)) == 1)
     {
-      free_grid(grid);
+      free(grid);
       return (1);
     }
   if (!check && showGrid(grid))
     {
-      free_grid(grid);
+      free(grid);
       return (1);
     }
   if (check == 2 && showGridError())
     {
-      free_grid(grid);
+      free(grid);
       return (1);
     }
   return (0);
