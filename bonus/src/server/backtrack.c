@@ -5,34 +5,28 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Sat Feb 27 06:47:24 2016 Ludovic Petrenko
-** Last update Sun Feb 28 01:01:24 2016 Antoine Baché
+** Last update Sun Feb 28 19:24:45 2016 Ludovic Petrenko
 */
 
 #include <stdlib.h>
 #include "server.h"
 
-int	check_error(int **grid)
+int	check_error(int **grid, int i, int j)
 {
-  int	i;
-  int	j;
   int	t;
   int	x;
   int	y;
 
-  j = -1;
-  while (++j < 9 && (i = -1))
-    while (++i < 9 && (t = -1))
-      {
-	while (++t < 9 && grid[i][j])
-	  {
-	    x = i / 3 * 3 + t / 3;
-	    y = j / 3 * 3 + t % 3;
-	    if ((grid[i][j] == grid[i][t] && t != j) ||
-		(grid[i][j] == grid[t][j] && t != i) ||
-		(grid[i][j] == grid[x][y] && !(x == i && y == j)))
-	      return (1);
-	  }
-      }
+  t = -1;
+  while (++t < 9 && grid[i][j])
+    {
+      x = i / 3 * 3 + t / 3;
+      y = j / 3 * 3 + t % 3;
+      if ((grid[i][j] == grid[i][t] && t != j) ||
+	  (grid[i][j] == grid[t][j] && t != i) ||
+	  (grid[i][j] == grid[x][y] && !(x == i && y == j)))
+	return (1);
+    }
   return (0);
 }
 
@@ -76,7 +70,8 @@ int	**backtrack(int **s, int i)
   while (++t < 9)
     {
       su[i / 9][i % 9] = t + 1;
-      if (!check_error(su) && (res = backtrack(su, i + 1)) != NULL)
+      if (!check_error(su, i / 9, i % 9) &&
+	  (res = backtrack(su, i + 1)) != NULL)
 	return (free_grid(su), res);
     }
   return (NULL);
