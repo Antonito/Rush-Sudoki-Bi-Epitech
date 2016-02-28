@@ -1,11 +1,11 @@
 /*
 ** pass.c for sudoku in /tek1/semestre_02/sudoki-bi
-** 
+**
 ** Made by Ludovic Petrenko
 ** Login   <petren_l@epitech.net>
-** 
+**
 ** Started on  Fri Feb 26 21:23:06 2016 Ludovic Petrenko
-** Last update Sun Feb 28 20:01:56 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:37:27 2016 Antoine Baché
 */
 
 #include "sudoki.h"
@@ -90,7 +90,7 @@ int	pass(char *su, char *bin)
   int	i;
   int	j;
   int	k;
-  int	sum[4];  
+  int	sum[4];
 
   change = 0;
   k = -1;
@@ -103,7 +103,8 @@ int	pass(char *su, char *bin)
 	    sum[1] = sum_column(bin, j, k);
 	    sum[2] = sum_untitled(bin, i, j);
 	    sum[3] = sum_square(bin, i, j, k);
-	    if ((sum[0] == 1 || sum[1] == 1 || sum[2] == 1 || sum[3] == 1) && ++change)
+	    if ((sum[0] == 1 || sum[1] == 1 || sum[2] == 1 || sum[3] == 1) &&
+		++change)
 	      add_sol(su, bin, i, j, k);
 	  }
   if (change)
