@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:07:08 2016 Antoine Baché
-** Last update Sat Feb 27 20:59:21 2016 Antoine Baché
+** Last update Sun Feb 28 00:59:00 2016 Antoine Baché
 */
 
 #include <string.h>
@@ -13,10 +13,7 @@
 
 void	receive_map(int fd, int **grid)
 {
-  if (receive_grid(grid, fd, false))
-    return ;
-  printf("Resolving grid\n");
-  if (send_grid(grid, fd))
+  if (receive_grid(grid, fd, false) || solve(grid) || send_grid(grid, fd))
     return ;
 }
 
