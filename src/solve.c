@@ -5,7 +5,7 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 21:06:30 2016 Ludovic Petrenko
-** Last update Sun Feb 28 20:08:55 2016 Ludovic Petrenko
+** Last update Sun Feb 28 21:28:08 2016 Ludovic Petrenko
 */
 
 #include <stdbool.h>
@@ -19,7 +19,7 @@ char	*set_tab(int value)
   char	*tab;
 
   i = 0;
-  if ((tab = my_malloc(729 * sizeof(int**))) == NULL)
+  if ((tab = my_malloc(729)) == NULL)
     return (NULL);
   while (i < 729)
     {
@@ -68,5 +68,5 @@ int	solve(char *su)
 	  return (free(bin), free(res), 0);
   	}
     }
-  return (showGrid(su));
+  return (free(bin), showGrid(su));
 }
