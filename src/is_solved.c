@@ -5,20 +5,18 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 23:48:39 2016 Ludovic Petrenko
-** Last update Sat Feb 27 06:05:11 2016 Ludovic Petrenko
+** Last update Sun Feb 28 20:05:53 2016 Ludovic Petrenko
 */
 
 #include "sudoki.h"
 
-int	is_solved(int **su)
+int	is_solved(char *su)
 {
   int	i;
-  int	j;
 
-  j = -1;
-  while (++j < 9 && (i = -1))
-    while (++i < 9)
-      if (!su[i][j])
-	return (0);
+  i = 0;
+  while (i < 81)
+    if (!su[i++])
+      return (0);
   return (1);
 }

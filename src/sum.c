@@ -5,7 +5,7 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 22:26:48 2016 Ludovic Petrenko
-** Last update Sun Feb 28 00:05:05 2016 Ludovic Petrenko
+** Last update Sun Feb 28 19:52:26 2016 Ludovic Petrenko
 */
 
 #include <stdarg.h>
@@ -13,28 +13,27 @@
 #include <unistd.h>
 #include "sudoki.h"
 
-void	clear_sol(int ***bin, int i, int j, int k)
+void	clear_sol(char *bin, int i, int j, int k)
 {
   int	t;
   int	u;
   int	v;
 
   t = -1;
-  /* printf("(%d, %d) %d\n", i + 1, j + 1, k + 1); */
   while (++t < 9)
     {
-      bin[i][j][t] = 0;
-      bin[i][t][k] = 0;
-      bin[t][j][k] = 0;
+      bin[81 * i + 9 * j + t] = 0;
+      bin[81 * i + 9 * t + k] = 0;
+      bin[81 * t + 9 * j + k] = 0;
     }
   v = -1;
   while (++v < 3 && (u = -1))
     while (++u < 3)
-      bin[(i / 3) * 3 + u][(j / 3) * 3 + v][k] = 0;
-  bin[i][j][k] = 1;
+      bin[81 * ((i / 3) * 3 + u) + 9 * ((j / 3) * 3 + v) + k] = 0;
+  bin[81 * i + 9 * j + k] = 1;
 }
 
-void		add_sol(int **su, int ***bin, int i, ...)
+void		add_sol(char *su, char *bin, int i, ...)
 {
   int		j;
   int		k;
@@ -45,5 +44,5 @@ void		add_sol(int **su, int ***bin, int i, ...)
   k = va_arg(ap, int);
   va_end(ap);
   clear_sol(bin, i, j, k);
-  su[i][j] = k + 1;
+  su[9 * i + j] = k + 1;
 }

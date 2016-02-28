@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 22:43:29 2016 Antoine Baché
-** Last update Sat Feb 27 06:07:35 2016 Ludovic Petrenko
+** Last update Sun Feb 28 19:57:35 2016 Ludovic Petrenko
 */
 
 #include <stdio.h>
@@ -22,7 +22,7 @@ int	showGridError(void)
   return (0);
 }
 
-int	showGrid(int **grid)
+int	showGrid(char *grid)
 {
   int	i;
   int	j;
@@ -36,7 +36,7 @@ int	showGrid(int **grid)
       if (printf("|") < 0)
 	return (1);
       while (++j < 9)
-	if (printf((grid[i][j]) ? " %d" : "  ", grid[i][j]) < 0)
+	if (printf((grid[9 * i + j]) ? " %d" : "  ", grid[9 * i + j]) < 0)
 	  return (1);
       if (printf("|\n") < 0)
 	return (1);

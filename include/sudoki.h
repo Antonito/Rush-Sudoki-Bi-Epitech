@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:33:02 2016 Antoine Baché
-** Last update Sun Feb 28 00:59:37 2016 Antoine Baché
+** Last update Sun Feb 28 20:19:52 2016 Ludovic Petrenko
 */
 
 #ifndef	SUDOKI_H_
@@ -16,38 +16,38 @@
 # include	<stdbool.h>
 
 int		showGridError(void);
-int		showGrid(int **);
-void		free_grid(int **);
-int		is_solved(int **);
+int		showGrid(char *);
+int		is_solved(char *);
+void		*my_malloc(int);
 
 /*
 ** backtrack.c
 */
-int		**backtrack(int **, int);
+char		*backtrack(char *, int);
 
 /*
 ** parse.c
 */
-int		fillGrid(char [], int *);
+int		fillGrid(char [], char *);
 int		checkGrid(char [], int, int);
-int		readOneGrid(int **, int *, bool);
-int		readGrid(int **);
+int		readOneGrid(char *, int *, bool);
+int		readGrid(char *);
 
 /*
 ** pass.c
 */
-int		pass(int **, int ***);
+int		pass(char *, char *);
 
 /*
 ** solve.c
 */
-void		prepare_tab(int **, int ***);
-int		***set_tab(int);
-int		solve(int **);
+void		prepare_tab(char *, char *);
+char		*set_tab(int);
+int		solve(char*);
 
 /*
 ** sum.c
 */
-void		add_sol(int **, int ***, int, ...);
+void		add_sol(char *, char *, int, ...);
 
 #endif /* !SUDOKI_H_ */

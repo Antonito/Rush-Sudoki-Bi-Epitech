@@ -5,7 +5,7 @@
 ** Login   <petren_l@epitech.net>
 ** 
 ** Started on  Fri Feb 26 21:06:30 2016 Ludovic Petrenko
-** Last update Sun Feb 28 00:46:38 2016 Ludovic Petrenko
+** Last update Sun Feb 28 20:08:55 2016 Ludovic Petrenko
 */
 
 #include <stdbool.h>
@@ -13,57 +13,42 @@
 #include <stdio.h>
 #include "sudoki.h"
 
-int	***set_tab(int value)
+char	*set_tab(int value)
 {
   int	i;
-  int	j;
-  int	k;
-  int	***tab;
+  char	*tab;
 
-  k = -1;
-  if ((tab = malloc(9 * sizeof(int**))) == NULL)
+  i = 0;
+  if ((tab = my_malloc(729 * sizeof(int**))) == NULL)
     return (NULL);
-  while (++k < 9 && (j = -1))
+  while (i < 729)
     {
-      if ((tab[k] = malloc(9 * sizeof(int*))) == NULL)
-	return (NULL);
-      while (++j < 9 && (i = -1))
-	{
-	  if ((tab[k][j] = malloc(9 * sizeof(int))) == NULL)
-	    return (NULL);
-	  while (++i < 9)
-	    tab[k][j][i] = value;
-	}
+      tab[i] = value;
+      i++;
     }
   return (tab);
 }
 
-void	prepare_tab(int **su, int ***bin)
+void	prepare_tab(char *su, char *bin)
 {
   int	i;
   int	j;
+  int	t;
 
   j = -1;
   while (++j < 9 && (i = -1))
     while (++i < 9)
-      if (su[i][j])
-	add_sol(su, bin, i, j, su[i][j] - 1);
+      {
+	t = 9 * i + j;
+	if (su[t])
+	  add_sol(su, bin, i, j, su[t] - 1);
+      }
 }
 
-void	free_tab(int ***tab)
+int	solve(char *su)
 {
-  int	i;
-
-  i = 0;
-  while (i < 9)
-    free_grid(tab[i++]);
-  free(tab);
-}
-
-int	solve(int **su)
-{
-  int	***bin;
-  int	**res;
+  char	*bin;
+  char	*res;
 
   if ((bin = set_tab(1)) == NULL)
     return (1);
@@ -76,11 +61,11 @@ int	solve(int **su)
 	    {
 	      if (showGridError())
 		return (1);
-	      return (free_tab(bin), 0);
+	      return (free(bin), 0);
 	    }
 	  else if (showGrid(res))
 	    return (1);
-	  return (free_tab(bin), free_grid(res), 0);
+	  return (free(bin), free(res), 0);
   	}
     }
   return (showGrid(su));
