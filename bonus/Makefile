@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sun Feb 28 21:21:38 2016 Antoine Baché
+## Last update Sun Feb 28 22:27:12 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -74,7 +74,7 @@ OBJ_CLIENT=		$(SRC_CLIENT:.c=.o)
 
 OBJ_SERV=		$(SRC_SERV:.c=.o)
 
-$(NAME_CLIENT):	$(NAME_SERV) $(OBJ_CLIENT)
+$(NAME_CLIENT):	$(NAME) $(NAME_SERV) $(OBJ_CLIENT)
 	@echo -n "[ "
 	@echo -n "OK"
 	@echo -n " ] "
@@ -88,12 +88,12 @@ $(NAME_SERV):	$(OBJ_SERV)
 	@echo "Compiled server"
 	@$(CC) $(OBJ_SERV) -o $(NAME_SERV)
 
-# $(NAME):	$(OBJ)
-# 	@echo -n "[ "
-# 	@echo -n "OK"
-# 	@echo -n " ] "
-# 	@echo "Compiled generator"
-# 	@$(CC) $(OBJ) -o $(NAME)
+$(NAME):	$(OBJ)
+	@echo -n "[ "
+	@echo -n "OK"
+	@echo -n " ] "
+	@echo "Compiled generator"
+	@$(CC) $(OBJ) -o $(NAME)
 
 %.o:%.c
 	@echo -n "[ "
@@ -102,7 +102,7 @@ $(NAME_SERV):	$(OBJ_SERV)
 	@echo "Compiling" $<
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
-all:	$(NAME_SERV) $(NAME_CLIENT)
+all:	$(NAME) $(NAME_SERV) $(NAME_CLIENT)
 
 clean:
 	@echo -n "[ "

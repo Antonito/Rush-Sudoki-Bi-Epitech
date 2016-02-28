@@ -5,7 +5,7 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Sat Feb 27 06:47:24 2016 Ludovic Petrenko
-** Last update Sun Feb 28 21:23:32 2016 Antoine Baché
+** Last update Sun Feb 28 21:35:29 2016 Antoine Baché
 */
 
 #include <stdlib.h>
@@ -69,5 +69,5 @@ char	*backtrack(char *s, int i)
 	  (res = backtrack(su, i + 1)) != NULL)
 	return (free(su), res);
     }
-  return (NULL);
+  return (free(su), NULL);
 }

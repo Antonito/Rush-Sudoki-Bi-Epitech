@@ -5,7 +5,7 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Fri Feb 26 21:06:30 2016 Ludovic Petrenko
-** Last update Sun Feb 28 21:25:39 2016 Antoine Baché
+** Last update Sun Feb 28 21:36:13 2016 Antoine Baché
 */
 
 #include <stdbool.h>
@@ -20,7 +20,7 @@ char	*set_tab(int value)
   char	*tab;
 
   i = 0;
-  if ((tab = my_malloc(729 * sizeof(int**))) == NULL)
+  if ((tab = my_malloc(729)) == NULL)
     return (NULL);
   while (i < 729)
     {

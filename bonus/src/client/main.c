@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:32:13 2016 Antoine Baché
-** Last update Sun Feb 28 21:28:02 2016 Antoine Baché
+** Last update Sun Feb 28 22:12:40 2016 Antoine Baché
 */
 
 #include <stdlib.h>
@@ -20,6 +20,7 @@ int	sudoki(char *ip, char *port)
 
   if ((grid = my_malloc(81)) == NULL)
     return (1);
+  memset(grid, 0, 81);
   if ((fd = start_connect(ip, port)) == -1)
     {
       free(grid);

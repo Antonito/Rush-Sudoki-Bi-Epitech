@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:07:08 2016 Antoine Baché
-** Last update Sun Feb 28 21:23:44 2016 Antoine Baché
+** Last update Sun Feb 28 22:21:44 2016 Antoine Baché
 */
 
 #include <string.h>
@@ -41,6 +41,7 @@ int	start_serv(char *port)
   while (42 && (fd = accept_client(serv_fd)) >= 0)
     while (42 && (tmp = socket_read(fd)))
       {
+	printf("Tmp = %s\n", tmp);
 	if (strncmp(tmp, "Hello", 5) != 0 &&
 	    write(2, "[INFOS] Client disconnected\n", 28) > -2)
 	  {
