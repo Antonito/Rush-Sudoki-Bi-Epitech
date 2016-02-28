@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 02:04:37 2016 Antoine Baché
-** Last update Sun Feb 28 23:39:21 2016 Antoine Baché
+** Last update Sun Feb 28 23:52:30 2016 Antoine Baché
 */
 
 #include <stdio.h>
@@ -35,7 +35,7 @@ int	main(int ac, char **av, char **env)
   if (check_args(ac, av))
     {
       difficulty = MIN(atoi(av[1]), 2);
-      if (ac == 3 && (fd = creat(av[2], 0655)) == -1 && (fd = 1))
+      if (ac == 3 && (fd = creat(av[2], 00644)) == -1 && (fd = 1))
 	dprintf(2, "Failed to create the file \"%s\"\n", av[2]);
     }
   else if (ac > 1)
