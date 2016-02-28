@@ -4,10 +4,10 @@
 ## Made by Antoine Baché
 ## Login   <bache_a@epitech.net>
 ##
-## Last update Sun Feb 28 00:54:46 2016 Ludovic Petrenko
+## Last update Sun Feb 28 01:36:23 2016 Antoine Baché
 ##
 
-DEBUG=			yes
+DEBUG=			no
 
 SRC_PREFIX=		src/
 
