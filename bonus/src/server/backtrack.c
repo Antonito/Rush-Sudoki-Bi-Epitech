@@ -5,74 +5,68 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Sat Feb 27 06:47:24 2016 Ludovic Petrenko
-** Last update Sun Feb 28 19:24:45 2016 Ludovic Petrenko
+** Last update Sun Feb 28 21:56:38 2016 Ludovic Petrenko
 */
 
 #include <stdlib.h>
 #include "server.h"
 
-int	check_error(int **grid, int i, int j)
+int	check_error(char *grid, int i, int j)
 {
   int	t;
   int	x;
   int	y;
+  int	k;
 
   t = -1;
-  while (++t < 9 && grid[i][j])
+  k = 9 * i + j;
+  while (++t < 9 && grid[k])
     {
       x = i / 3 * 3 + t / 3;
       y = j / 3 * 3 + t % 3;
-      if ((grid[i][j] == grid[i][t] && t != j) ||
-	  (grid[i][j] == grid[t][j] && t != i) ||
-	  (grid[i][j] == grid[x][y] && !(x == i && y == j)))
+      if ((grid[k] == grid[k - j + t] && t != j) ||
+	  (grid[k] == grid[9 * t + j] && t != i) ||
+	  (grid[k] == grid[x * 9 + y] && !(x == i && y == j)))
 	return (1);
     }
   return (0);
 }
 
-int	**cp_grid(int **grid)
+char	*cp_grid(char *grid)
 {
   int	i;
-  int	j;
-  int	**res;
+  char	*res;
 
-  if ((res = malloc(9 * sizeof(int *))) == NULL)
+  if ((res = malloc(81)) == NULL)
     return (NULL);
   i = 0;
-  while (i < 9)
+  while (i < 81)
     {
-      if ((res[i] = malloc(9 * sizeof(int))) == NULL)
-	return (NULL);
-      j = 0;
-      while (j < 9)
-	{
-	  res[i][j] = grid[i][j];
-	  j++;
-	}
+      res[i] = grid[i];
       i++;
     }
   return (res);
 }
 
-int	**backtrack(int **s, int i)
+char	*backtrack(char *s, int i)
 {
-  int	**res;
-  int	**su;
+  char	*res;
+  char	*su;
   int	t;
 
   if ((su = cp_grid(s)) == NULL)
     return (NULL);
   if (i == 81)
     return (su);
-  if (s[i / 9][i % 9])
-    return (free_grid(su), backtrack(s, i + 1));
+  if (s[i])
+    return (free(su), backtrack(s, i + 1));
   t = -1;
   while (++t < 9)
     {
-      su[i / 9][i % 9] = t + 1;
+      su[i] = t + 1;
       if (!check_error(su, i / 9, i % 9) &&
 	  (res = backtrack(su, i + 1)) != NULL)
-	return (free_grid(su), res);
+	return (free(su), res);
     }
-  return (NULL);
+  return (free(su), NULL);
 }

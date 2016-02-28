@@ -5,14 +5,23 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sun Feb 28 01:22:21 2016 Ludovic Petrenko
+## Last update Sun Feb 28 22:53:24 2016 Ludovic Petrenko
 ##
 
 DEBUG=			yes
 
 SRC_PREFIX=		src/generator/
 
-SRC_FILES=		main.c
+SRC_FILES=		check_error.c		\
+			generate.c		\
+			is_numeric.c		\
+			is_solvable.c		\
+			is_solved.c		\
+			main.c			\
+			my_malloc.c		\
+			pass.c			\
+			show.c			\
+			sum.c
 
 SRC_CLIENT_PREFIX=	src/client/
 
@@ -60,9 +69,9 @@ NAME_SERV=		server
 HEAD=			-Iinclude
 
 ifeq ($(DEBUG), yes)
-	CFLAGS=		$(HEAD) -W -Wall -Wextra -ansi -pedantic -g -D DEBUG
+	CFLAGS=		$(HEAD) -W -Wall -Wextra -g -D DEBUG
 else
-	CFLAGS=		$(HEAD) -W -Wall -Wextra -Werror -ansi -pedantic
+	CFLAGS=		$(HEAD) -W -Wall -Wextra -Werror
 endif
 
 CC=			gcc

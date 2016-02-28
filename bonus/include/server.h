@@ -5,15 +5,11 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:12:50 2016 Antoine Baché
-** Last update Sun Feb 28 01:23:34 2016 Ludovic Petrenko
+** Last update Sun Feb 28 22:47:34 2016 Ludovic Petrenko
 */
 
 #ifndef	SERVER_H_
 # define SERVER_H_
-
-# define _DEFAULT_SOURCE
-# define _POSIX_SOURCE
-# define _BSD_SOURCE
 
 # include <unistd.h>
 # include <stdlib.h>

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 02:04:37 2016 Antoine Baché
-** Last update Sun Feb 28 19:41:07 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:31:41 2016 Ludovic Petrenko
 */
 
 #include <stdio.h>
@@ -34,14 +34,14 @@ int	main(int ac, char **av, char **env)
   difficulty = 0;
   if (check_args(ac, av))
     {
-      difficulty = atoi(av[1]);
+      difficulty = MIN(atoi(av[1]), 2);
       if (ac == 3 && (fd = creat(av[2], 0655)) == -1 && (fd = 1))
 	dprintf(2, "Failed to create the file \"%s\"\n", av[2]);
     }
   else if (ac > 1)
     return (dprintf(2, "Usage: ./generator [difficulty] [output file]\n\
-difficulty: 0 = easy 4 = hard (0 by default)\n\
-output: by default standard output\n"), 1);
+difficulty: 0 = easy - 4 = hard (0 by default)\n\
+output: standard output by default\n"), 1);
   if (generate(fd, difficulty))
     return (1);
   if (fd > 2)
