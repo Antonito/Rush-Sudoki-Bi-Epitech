@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:32:13 2016 Antoine Baché
-** Last update Sun Feb 28 20:33:18 2016 Antoine Baché
+** Last update Sun Feb 28 21:33:29 2016 Antoine Baché
 */
 
 #include <stdlib.h>
@@ -17,7 +17,7 @@ int	sudoki(void)
 {
   char	*grid;
 
-  if (!(grid = my_malloc(81)))
+  if ((grid = my_malloc(81)) == NULL)
     return (1);
   if (readGrid(grid))
     return (1);
@@ -27,7 +27,7 @@ int	sudoki(void)
 
 int	main(int ac, __attribute__((unused)) char **av, char **env)
 {
-  if (!*env)
+  if (*env == NULL)
     return (1);
   if (ac != 1)
     {
