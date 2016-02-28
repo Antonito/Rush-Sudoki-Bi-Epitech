@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 02:04:37 2016 Antoine Baché
-** Last update Sun Feb 28 23:52:30 2016 Antoine Baché
+** Last update Mon Feb 29 00:46:14 2016 Antoine Baché
 */
 
 #include <stdio.h>
@@ -40,7 +40,7 @@ int	main(int ac, char **av, char **env)
     }
   else if (ac > 1)
     return (dprintf(2, "Usage: ./generator [difficulty] [output file]\n\
-difficulty: 0 = easy - 4 = hard (0 by default)\n\
+difficulty: 0 = easy - 2 = hard (0 by default)\n\
 output: standard output by default\n"), 1);
   if (generate(fd, difficulty))
     return (1);
