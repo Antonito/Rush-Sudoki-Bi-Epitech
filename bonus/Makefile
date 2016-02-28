@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sun Feb 28 01:22:21 2016 Ludovic Petrenko
+## Last update Sun Feb 28 21:21:38 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -18,7 +18,6 @@ SRC_CLIENT_PREFIX=	src/client/
 
 SRC_CLIENT_FILES=	main.c			\
 			errors.c		\
-			free.c			\
 			parse.c			\
 			show.c			\
 			send_serv.c
@@ -31,7 +30,7 @@ SRC_SERV_FILES=		main.c			\
 			is_solved.c		\
 			pass.c			\
 			solve.c			\
-			free.c			\
+			errors.c		\
 			sum.c
 
 NETWORK_PREFIX=		src/network/
@@ -75,7 +74,7 @@ OBJ_CLIENT=		$(SRC_CLIENT:.c=.o)
 
 OBJ_SERV=		$(SRC_SERV:.c=.o)
 
-$(NAME_CLIENT):	$(NAME) $(NAME_SERV) $(OBJ_CLIENT)
+$(NAME_CLIENT):	$(NAME_SERV) $(OBJ_CLIENT)
 	@echo -n "[ "
 	@echo -n "OK"
 	@echo -n " ] "
@@ -89,12 +88,12 @@ $(NAME_SERV):	$(OBJ_SERV)
 	@echo "Compiled server"
 	@$(CC) $(OBJ_SERV) -o $(NAME_SERV)
 
-$(NAME):	$(OBJ)
-	@echo -n "[ "
-	@echo -n "OK"
-	@echo -n " ] "
-	@echo "Compiled generator"
-	@$(CC) $(OBJ) -o $(NAME)
+# $(NAME):	$(OBJ)
+# 	@echo -n "[ "
+# 	@echo -n "OK"
+# 	@echo -n " ] "
+# 	@echo "Compiled generator"
+# 	@$(CC) $(OBJ) -o $(NAME)
 
 %.o:%.c
 	@echo -n "[ "
@@ -103,7 +102,7 @@ $(NAME):	$(OBJ)
 	@echo "Compiling" $<
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
-all:	$(NAME) $(NAME_SERV) $(NAME_CLIENT)
+all:	$(NAME_SERV) $(NAME_CLIENT)
 
 clean:
 	@echo -n "[ "

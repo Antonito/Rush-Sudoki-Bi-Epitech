@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 23:07:33 2016 Antoine Baché
-** Last update Sun Feb 28 01:21:51 2016 Antoine Baché
+** Last update Sun Feb 28 21:18:25 2016 Antoine Baché
 */
 
 #include <unistd.h>
@@ -16,12 +16,12 @@
 #include "client.h"
 #include "network.h"
 
-int	fillGrid(char buff[], int *grid)
+int	fillGrid(char *buff, char *grid)
 {
   int	i;
   int	j;
 
-  memset(grid, 0, sizeof(int) * 9);
+  memset(grid, 0, 9);
   i = 0;
   j = -1;
   while (i < 20)
@@ -37,7 +37,7 @@ int	fillGrid(char buff[], int *grid)
   return (0);
 }
 
-int	checkGrid(char buff[], int i, int loop)
+int	checkGrid(char *buff, int i, int loop)
 {
   int	j;
 
@@ -53,7 +53,7 @@ int	checkGrid(char buff[], int i, int loop)
   return (0);
 }
 
-int	readOneGrid(int **grid, int *check, bool start)
+int	readOneGrid(char *grid, int *check, bool start)
 {
   char	buff[22];
   int	loop;
@@ -66,7 +66,7 @@ int	readOneGrid(int **grid, int *check, bool start)
     {
       if (checkGrid(buff, i, loop))
 	return (1);
-      if (i < 9 && fillGrid(buff, grid[i]))
+      if (i < 9 && fillGrid(buff, grid + 9 * i))
 	return (1);
       if (loop++ > 0)
 	++i;
@@ -83,6 +83,7 @@ int	readOneGrid(int **grid, int *check, bool start)
 int	disconnect_error(int fd)
 {
   char	*tmp;
+
   socket_send(fd, "ByeBye");
   tmp = socket_read(fd);
   close(fd);
@@ -90,7 +91,7 @@ int	disconnect_error(int fd)
   return (1);
 }
 
-int	readGrid(int **grid, int fd)
+int	readGrid(char *grid, int fd)
 {
   int	check;
   bool	start;

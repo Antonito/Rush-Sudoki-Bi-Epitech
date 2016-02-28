@@ -5,54 +5,48 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:28:13 2016 Antoine Baché
-** Last update Sat Feb 27 21:14:25 2016 Antoine Baché
+** Last update Sun Feb 28 21:22:01 2016 Antoine Baché
 */
 
 #include <stdlib.h>
 #include "network.h"
 
-int	send_grid(int **grid, int fd)
+int	send_grid(char *grid, int fd)
 {
   int	i;
-  int	j;
   char	*tmp;
 
   i = 0;
-  while (i < 9 && !(j = 0))
+  while (i < 81)
     {
-      while (j < 9)
-	{
-	  if (socket_send_int(fd, grid[i][j]) || !(tmp = socket_read(fd)))
-	    return (1);
-	  free(tmp);
-	  ++j;
-	}
+      if (socket_send(fd, &grid[i]) || (tmp = socket_read(fd)) == NULL)
+	return (1);
+      free(tmp);
       ++i;
     }
   return (0);
 }
 
-int	receive_grid(int **grid, int fd, bool solved)
+int	receive_grid(char *grid, int fd, bool solved)
 {
   int	i;
-  int	j;
+  char	*tmp;
   bool	check;
 
   i = 0;
   check = false;
-  while (i < 9 && !(j = 0))
+  while (i < 81)
     {
-      while (j < 9)
+      if ((tmp = socket_read(fd)) == NULL ||
+	  !(grid[i] = *tmp) ||
+	  grid[i] > 9 ||
+	  socket_send(fd, "OK"))
 	{
-	  if ((grid[i][j] = socket_r_int(fd)) == -1 || grid[i][j] > 9 ||
-	      socket_send(fd, "OK"))
-	    {
-	      return (1);
-	    }
-	  if (solved == true && check == false && grid[i][j] == 0)
-	    check = true;
-	  ++j;
+	  return (1);
 	}
+      free(tmp);
+      if (solved == true && check == false && grid[i] == 0)
+	check = true;
       ++i;
     }
   if (check)

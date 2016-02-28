@@ -5,12 +5,13 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 21:11:47 2016 Antoine Baché
-** Last update Sat Feb 27 00:53:31 2016 Antoine Baché
+** Last update Sun Feb 28 21:22:49 2016 Antoine Baché
 */
 
 #ifndef	ERRORS_H_
 # define ERRORS_H_
 
+void		*my_malloc(int);
 int		errorMapError(void);
 int		errorMalloc(void);
 

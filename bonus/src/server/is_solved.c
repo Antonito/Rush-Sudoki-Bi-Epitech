@@ -5,20 +5,18 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Fri Feb 26 23:48:39 2016 Ludovic Petrenko
-** Last update Sun Feb 28 01:01:41 2016 Antoine Baché
+** Last update Sun Feb 28 21:01:01 2016 Antoine Baché
 */
 
 #include "server.h"
 
-int	is_solved(int **su)
+int	is_solved(char *su)
 {
   int	i;
-  int	j;
 
-  j = -1;
-  while (++j < 9 && (i = -1))
-    while (++i < 9)
-      if (!su[i][j])
-	return (0);
+  i = 0;
+  while (i < 81)
+    if (!su[i++])
+      return (0);
   return (1);
 }

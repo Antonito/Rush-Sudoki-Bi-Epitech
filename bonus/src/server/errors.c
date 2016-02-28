@@ -5,11 +5,11 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 21:09:57 2016 Antoine Baché
-** Last update Sun Feb 28 20:07:38 2016 Ludovic Petrenko
+** Last update Sun Feb 28 21:28:44 2016 Antoine Baché
 */
 
-#include <unistd.h>
 #include <stdlib.h>
+#include "server.h"
 
 int	errorMapError(void)
 {

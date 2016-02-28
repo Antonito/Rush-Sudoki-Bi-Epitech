@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:33:02 2016 Antoine Baché
-** Last update Sat Feb 27 16:18:57 2016 Antoine Baché
+** Last update Sun Feb 28 21:26:43 2016 Antoine Baché
 */
 
 #ifndef	CLIENT_H_
@@ -16,22 +16,21 @@
 # include	<stdbool.h>
 
 int		showGridError(void);
-int		showGrid(int **);
-void		free_grid(int **);
+int		showGrid(char *);
 int		is_solved(int **);
 
 /*
 ** parse.c
 */
-int		fillGrid(char [], int *);
-int		checkGrid(char [], int, int);
-int		readOneGrid(int **, int *, bool);
-int		readGrid(int **, int);
+int		fillGrid(char *, char *);
+int		checkGrid(char *, int, int);
+int		readOneGrid(char *, int *, bool);
+int		readGrid(char *, int);
 
 /*
 ** send_serv.c
 */
 int		start_connect(char *, char *);
-int		send_server(int **, int);
+int		send_server(char *, int);
 
 #endif /* !CLIENT_H_ */

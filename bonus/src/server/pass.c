@@ -5,57 +5,63 @@
 ** Login   <petren_l@epitech.net>
 **
 ** Started on  Fri Feb 26 21:23:06 2016 Ludovic Petrenko
-** Last update Sun Feb 28 01:01:51 2016 Antoine Baché
+** Last update Sun Feb 28 21:03:34 2016 Antoine Baché
 */
 
 #include "server.h"
 
-int	sum_line(int ***bin, int i, int k)
+int	sum_line(char *bin, int i, int k)
 {
   int	t;
   int	sum;
+  int	c;
 
   t = 0;
   sum = 0;
+  c = 81 * i + k;
   while (t < 9)
     {
-      sum += bin[i][t][k];
+      sum += bin[9 * t + c];
       ++t;
     }
   return (sum);
 }
 
-int	sum_column(int ***bin, int j, int k)
+int	sum_column(char *bin, int j, int k)
 {
   int	t;
   int	sum;
+  int	c;
 
   t = 0;
   sum = 0;
+  c = 9 * j + k;
   while (t < 9)
     {
-      sum += bin[t][j][k];
+      sum += bin[81 * t + c];
       ++t;
     }
   return (sum);
 }
 
-int	sum_untitled(int ***bin, int i, int j)
+int	sum_untitled(char *bin, int i, int j)
 {
   int	t;
   int	sum;
+  int	c;
 
   t = 0;
   sum = 0;
+  c = 81 * i + 9 * j;
   while (t < 9)
     {
-      sum += bin[i][j][t];
+      sum += bin[t + c];
       ++t;
     }
   return (sum);
 }
 
-int	sum_square(int ***bin, int i, int j, int k)
+int	sum_square(char *bin, int i, int j, int k)
 {
   int	u;
   int	v;
@@ -70,7 +76,7 @@ int	sum_square(int ***bin, int i, int j, int k)
       v = 0;
       while (v < 3)
 	{
-	  sum += bin[i + u][j + v][k];
+	  sum += bin[81 * (i + u) + 9 * (j + v) + k];
 	  ++v;
 	}
       ++u;
@@ -78,7 +84,7 @@ int	sum_square(int ***bin, int i, int j, int k)
   return (sum);
 }
 
-int	pass(int **su, int ***bin)
+int	pass(char *su, char *bin)
 {
   int	change;
   int	i;
@@ -91,13 +97,14 @@ int	pass(int **su, int ***bin)
   while (++k < 9 && (j = -1))
     while (++j < 9 && (i = -1))
       while (++i < 9)
-	if (!su[i][j] && bin[i][j][k])
+	if (!su[9 * i + j] && bin[81 * i + 9 * j + k])
 	  {
 	    sum[0] = sum_line(bin, i, k);
 	    sum[1] = sum_column(bin, j, k);
 	    sum[2] = sum_untitled(bin, i, j);
 	    sum[3] = sum_square(bin, i, j, k);
-	    if ((sum[0] == 1 || sum[1] == 1 || sum[2] == 1 || sum[3] == 1) && ++change)
+	    if ((sum[0] == 1 || sum[1] == 1 || sum[2] == 1 || sum[3] == 1) &&
+		++change)
 	      add_sol(su, bin, i, j, k);
 	  }
   if (change)
