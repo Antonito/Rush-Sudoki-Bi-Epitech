@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 02:04:37 2016 Antoine Baché
-** Last update Sun Feb 28 23:31:41 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:39:21 2016 Antoine Baché
 */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@ int	main(int ac, char **av, char **env)
 {
   int	fd;
   int	difficulty;
-  
+
   if (!*env)
     return (1);
   fd = 1;

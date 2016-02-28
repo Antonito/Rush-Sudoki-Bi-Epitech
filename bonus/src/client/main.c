@@ -5,10 +5,11 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Fri Feb 26 20:32:13 2016 Antoine Baché
-** Last update Sun Feb 28 22:12:40 2016 Antoine Baché
+** Last update Sun Feb 28 23:38:37 2016 Antoine Baché
 */
 
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "client.h"
 #include "errors.h"

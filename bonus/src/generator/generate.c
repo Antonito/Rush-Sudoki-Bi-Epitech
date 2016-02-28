@@ -1,19 +1,18 @@
 /*
 ** generate.c for generator in /tek1/semestre_02/sudoki-bi/bonus
-** 
+**
 ** Made by Ludovic Petrenko
 ** Login   <petren_l@epitech.net>
-** 
+**
 ** Started on  Sun Feb 28 21:51:26 2016 Ludovic Petrenko
-** Last update Sun Feb 28 23:31:04 2016 Ludovic Petrenko
+** Last update Sun Feb 28 23:39:40 2016 Antoine Baché
 */
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include <time.h>
 #include "generator.h"
-
-#include <stdio.h>
 
 int	gen(char *grid, int nb)
 {
@@ -24,7 +23,7 @@ int	gen(char *grid, int nb)
   memset(grid, 0, 81);
   while (i < nb)
     {
-  
+
       coord = rand() % 81;
       if (!grid[coord])
 	{
