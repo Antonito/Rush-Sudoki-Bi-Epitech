@@ -5,10 +5,10 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Fri Feb 26 20:26:29 2016 Antoine Baché
-## Last update Sun Feb 28 23:58:50 2016 Antoine Baché
+## Last update Mon Feb 29 00:57:24 2016 Antoine Baché
 ##
 
-DEBUG=			no
+DEBUG=			yes
 
 SRC_PREFIX=		src/generator/
 

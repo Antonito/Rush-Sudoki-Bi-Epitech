@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Feb 27 15:28:13 2016 Antoine Baché
-** Last update Sun Feb 28 22:26:28 2016 Antoine Baché
+** Last update Mon Feb 29 01:00:32 2016 Antoine Baché
 */
 
 #include <stdlib.h>
@@ -35,7 +35,7 @@ int	receive_grid(char *grid, int fd, bool solved)
   i = -1;
   while (++i < 81 && (grid[i] = tmp[i]) < 127)
     if (grid[i] > 9)
-      return (1);
+      return (free(tmp), 1);
     else if (solved == true && check == false && grid[i] == 0)
       check = true;
   i = -1;
