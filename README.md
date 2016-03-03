@@ -11,3 +11,5 @@ Bonus : - A grid generator
           and then the client displays the resolved grid. (TCP socket)
 
 Realised with Ludovic Petrenko.
+
+Grade : 14 / 16
