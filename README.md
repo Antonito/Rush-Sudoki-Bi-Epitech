@@ -10,6 +10,6 @@ Bonus : - A grid generator
         - Server / client : the client send the map to the server, the server resolves it,
           and then the client displays the resolved grid. (TCP socket)
 
-Realised with Ludovic Petrenko.
+Realized with Ludovic Petrenko.
 
 Grade : 14 / 16
